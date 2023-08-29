@@ -108,6 +108,9 @@ function limparInputs() {
     document.getElementById("input-especie").value = "";
     document.getElementById("input-data").value = "";
     document.getElementById("input-imgLink").value = "";
+
+
+
 }
 
 function renderizarConteudo() {
