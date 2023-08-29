@@ -41,7 +41,23 @@ function envieMsg(msg, tipo) {
     }, 3000);
 }
 
-Class Pets {
-    constructor(tutor, pet, especie, data, imgLink) {
-        
+class Pets {
+    constructor(tutor, pet, especie, imgLink) {
+        this.tutor = tutor;
+        this.pet = pet;
+        this.especie = especie;
+        this.imgLink = imgLink;
+    }
 }
+
+function RegistrarPets() {
+    let tutor = document.getElementById("input-nomeTutor").value;
+    let pet = document.getElementById("input-nomePet").value;
+    let especie = document.getElementById("input-especie").value;
+    let data = document.getElementById("input-data").value;
+    let imgLink = document.getElementById("input-imgLink").value;
+
+    const nomePet = new NomePet(tutor, pet, especie, data, imgLink);
+
+}
+
