@@ -1,1 +1,1 @@
-# Estrutura Básica Projetos HTML, CSS e JS.
+# Estrutura Básica Projeto HTML, CSS e JS.

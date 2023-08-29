@@ -42,24 +42,25 @@ function envieMsg(msg, tipo) {
 }
 
 class Pet {
-    constructor(tutor, pet, especie, imgLink) {
+    constructor(tutor, pet, especie, imgLink, data) {
         this.tutor = tutor;
         this.pet = pet;
         this.especie = especie;
         this.imgLink = imgLink;
-        this.calculateAge = this.calculateAge();
+        this.data = data;
+        this.aniversario = this.calculateAge(data);
     }
 
-    calculateAge() {
-        const today = new Date();
-        const birthDate = new Date(this.birthdate);
-        let age = today.getFullYear() - birthDate.getFullYear();
-        const m = today.getMonth() - birthDate.getMonth();
-        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-            age--;
-        }
+    calculateAge(aniversario) {
+        const newDate = new Date(aniversario);
+        const yearDate = newDate.getFullYear();
+
+        const todayDate = new Date();
+        const nowDate = todayDate.getFullYear();
+
+        const age = nowDate - yearDate;
         return age;
-    }
+}
 }
 
 
@@ -70,10 +71,10 @@ function RegistrarPet() {
     let data = document.getElementById("input-data").value;
     let imgLink = document.getElementById("input-imgLink").value;
 
-    const nomePet = new NomePet(tutor, pet, especie, data, imgLink);
+    const nomePet = new Pet(tutor, pet, especie, data, imgLink);
 
     bibliotecaPets.add(nomePet);
-    console.log(bibliotecaPets);
+    console.log(Pet);
     renderizarConteudo();
 }
 
