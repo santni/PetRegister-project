@@ -7,17 +7,11 @@
     font-family: 'Poppins', sans-serif;
 }
 
-main {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 body {
     background-color: #dbdbdb;
 }
 
-#inputbox {
+#inputs-principais {
     background-color: white;
     margin-top: 110px;
     max-width: 500px;
@@ -25,10 +19,9 @@ body {
     height: 30%;
     border-radius: 8px;
     padding: 30px;
-    justify-content: center;
 }
 
-#input {
+.input {
     background-color: #dbdbdb;
     border-radius: 5px ;
     width: 300px;
@@ -38,7 +31,7 @@ body {
     padding-left: 9px;
 }
 
-#button {
+.button {
     background-color: #dbdbdb;
     border-radius: 5px;
     border: 0.3rem #dbdbdb;
