@@ -7,20 +7,19 @@ function verificarInputs() {
     let data = document.getElementById("input-data").value;
     let imgLink = document.getElementById("input-imgLink").value;
 
-    console.log(tutor);
-    console.log(pet);
-    console.log(especie);
-    console.log(data);
-    console.log(imgLink);
-
+    console.log({tutor});
+    console.log({pet});
+    console.log({especie});
+    console.log({data});
+    console.log({imgLink});
 
     if (tutor == "" || pet == "" || especie == "" || data == "" || imgLink == "") {
 
-        //console.log("Os campos estão vazios!");
+        console.log("Os campos estão vazios!");
         envieMsg('Preencha todos os campos, por favor!', 'erro');
         return true;
     } else {
-        //console.log("Os dados não estão em branco.");
+        console.log("Os dados não estão em branco.");
         envieMsg('Os dados foram coletados', 'sucesso');
         return false;
     }
@@ -59,23 +58,26 @@ class Pet {
         const nowDate = todayDate.getFullYear();
 
         const age = nowDate - yearDate;
-        return age;
-}
+        return age
+    }
 }
 
 
-function RegistrarPet() {
+const nomePet = new Pet("Nicolly", "Luna", "Gato Persa", "19-12-20", "img");
+console.log(nomePet);
+
+function registrarPet() {
     let tutor = document.getElementById("input-nomeTutor").value;
     let pet = document.getElementById("input-nomePet").value;
     let especie = document.getElementById("input-especie").value;
     let data = document.getElementById("input-data").value;
     let imgLink = document.getElementById("input-imgLink").value;
 
-    const nomePet = new Pet(tutor, pet, especie, data, imgLink);
 
-    bibliotecaPets.add(nomePet);
+    const nomePet = new Pet(tutor, pet, especie, imgLink, data);
+
+    bibliotecaPets.addPet(nomePet);
     console.log(Pet);
-    renderizarConteudo();
 }
 
 class ListaPets {
@@ -86,56 +88,78 @@ class ListaPets {
     addPet(parametro) {
         if (verificarInputs()) {
             envieMsg('Preencha todos os campos, por favor!', 'erro');
-        } else if (!isURLValida(parametro.imgLink)) {
-            envieMsg("URL inválida!", "erro");
         } else {
             this.listaPets.push(parametro);
             limparInputs();
             envieMsg('Cadastrado com sucesso!', 'sucesso');
-            console.log(this.listaPets);
+            //console.log(this.listaPets);
         }
     }
 }
 
-const bibliotecaPets = new ListaPets();
-console.log(bibliotecaPets);
 
 function limparInputs() {
-    console.log("Usei a funcao de limparInputs");
+    console.log("Usei a função de limparInputs");
 
     document.getElementById("input-nomeTutor").value = "";
     document.getElementById("input-nomePet").value = "";
     document.getElementById("input-especie").value = "";
     document.getElementById("input-data").value = "";
     document.getElementById("input-imgLink").value = "";
-
-
-
 }
+
+const bibliotecaPets = new ListaPets();
+//console.log(bibliotecaPets);
 
 function renderizarConteudo() {
 
-    const listaHTML = document.getElementById('containerLista');
+    /*const listaHTML = document.getElementById('containerLista');
     listaHTML.innerHTML = '';
 
-    let array = bibliotecaPets;
-
+    let array = bibliotecaPets.listaPets;
     console.log(array);
 
     array.forEach(nomePet => {
-
         const nomePetDiv = `
             <div class='nomePetDetalhe'>
                 <h2>Tutor: ${nomePet.tutor}</h2>
                 <p>Nome do Pet: R$${nomePet.pet}</p>
                 <p>Espécie: ${nomePet.especie}</p>
-                <p>Data de nascimento: ${nomePet.data}</p>
+                <p>Data de nascimento: ${dateinPTBR(nomePet.data)}</p>
                 <p>Idade do pet: ${nomePet.age}</p>
-                <img src="${nomePet.imgLink}" alt="${nomePet.titulo}">
+                <img src="${nomePet.imgLink}" alt="${nomePet.tutor}">
             </div>
        `;
-
         listaHTML.innerHTML += nomePetDiv;
     });
+} */
+
+let content = '';
+let array = bibliotecaPets.listaPets;
+
+array.forEach(nomePet => {
+    content += `
+    <div class='containerLista'>
+                <h2>Tutor: ${nomePet.tutor}</h2>
+                <p>Nome do Pet: ${nomePet.pet}</p>
+                <p>Espécie: ${nomePet.especie}</p>
+                <p>Data de nascimento: ${nomePet.data}</p>
+                <p>Idade do pet: ${nomePet.age}</p>
+                <img src="${nomePet.imgLink}" alt="${nomePet.tutor}">
+            </div>
+            `
+});
+document.getElementById('containerLista').innerHTML = content;
 }
 
+
+function showList(){
+    document.getElementById("input-container").classList.remove("hidden")
+    document.getElementById("div-vazia").classList.add("hidden")
+}
+
+function showForm() {
+    renderizarConteudo();
+    document.getElementById("input-container").classList.add("hidden")
+    document.getElementById("div-vazia").classList.remove("hidden")
+}

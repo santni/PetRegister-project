@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
 
@@ -8,17 +9,20 @@
     <link href="assets/css/style.css" rel="stylesheet">
     <title>Clínica veterinária</title>
 </head>
+
 <body>
     <header>
         <h1 id="titulo1">Clínica Veterinária</h1>
-        <button id="botao-cadastro" onclick="CadastroPet()">Cadastro</button>
-        <button id="botao-exibicao" onclick="ExibicaoPets()">Exibição</button>
+        <div class="botao-inicio">
+            <button id="botao-cadastro" onclick="showList()">Cadastro</button>
+            <button id="botao-exibicao" onclick="showForm()">Exibição</button>
+        </div>
     </header>
 
     <div id="input-container">
         <h2>Cadastro de Pets</h2>
         <div id="inputs-principais">
-           
+
             <label for="input-nomeTutor">Tutor:</label>
             <Input type="text" id="input-nomeTutor" name="input-nomeTutor" class="input"><br>
 
@@ -34,16 +38,21 @@
             <label for="input-data">Data de nascimento:</label>
             <Input type="date" id="input-data" name="input-data" class="input"><br>
         </div>
+    </div>
 
-        <div id="msg"></div>
+    <div id="msg"></div>
 
-        <div id="div-botao">
-            <button id="botao-registrar" onclick="RegistrarPet()">Cadastrar</button>
+        <button id="botao-registrar" onclick="registrarPet()">Cadastrar</button>
+
+    </div>
+    <div id="div-vazia" class="hidden">
+        <div id="containerLista">
+
         </div>
     </div>
-
-    <div id="containerLista">
-    
-    </div>
+    <footer>
+        <p id="footer-vet">Clínica Veterinária - Todos os direitos reservados</p>
+    </footer>
 </body>
+
 </html>
