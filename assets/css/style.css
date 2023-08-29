@@ -26,7 +26,7 @@ body {
     margin-top: 10px;
     max-width: 500px;
     width: 100%;
-    height: 30%;
+    height: 10%;
     border-radius: 8px;
     padding: 30px;
 }
@@ -84,7 +84,6 @@ footer {
     border: none;
     background-color: #1d7044;
     color: white;
-    margin-right: ;
 }
 
 .erro {
@@ -100,6 +99,7 @@ footer {
 
 #botao-registrar {
     margin-top: 25px;
+    width: 350px;
     border: none;
     background-color: #1d7044;
     color: white;

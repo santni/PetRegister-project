@@ -7,11 +7,11 @@ function verificarInputs() {
     let data = document.getElementById("input-data").value;
     let imgLink = document.getElementById("input-imgLink").value;
 
-    console.log({tutor});
-    console.log({pet});
-    console.log({especie});
-    console.log({data});
-    console.log({imgLink});
+    console.log({ tutor });
+    console.log({ pet });
+    console.log({ especie });
+    console.log({ data });
+    console.log({ imgLink });
 
     if (tutor == "" || pet == "" || especie == "" || data == "" || imgLink == "") {
 
@@ -51,8 +51,11 @@ class Pet {
     }
 
     calculateAge(aniversario) {
+        //console.log("Data: ", aniversario);
         const newDate = new Date(aniversario);
+        //console.log("Data: ", newDate);
         const yearDate = newDate.getFullYear();
+        //console.log("Ano: ", yearDate);
 
         const todayDate = new Date();
         const nowDate = todayDate.getFullYear();
@@ -63,8 +66,8 @@ class Pet {
 }
 
 
-const nomePet = new Pet("Nicolly", "Luna", "Gato Persa", "19-12-20", "img");
-console.log(nomePet);
+//const nomePet = new Pet("Nicolly", "Luna", "Gato Persa", "19-12-20", "img");
+//console.log(nomePet);
 
 function registrarPet() {
     let tutor = document.getElementById("input-nomeTutor").value;
@@ -77,7 +80,7 @@ function registrarPet() {
     const nomePet = new Pet(tutor, pet, especie, imgLink, data);
 
     bibliotecaPets.addPet(nomePet);
-    console.log(Pet);
+    //console.log(Pet);
 }
 
 class ListaPets {
@@ -134,26 +137,26 @@ function renderizarConteudo() {
     });
 } */
 
-let content = '';
-let array = bibliotecaPets.listaPets;
+    let content = '';
+    let array = bibliotecaPets.listaPets;
 
-array.forEach(nomePet => {
-    content += `
+    array.forEach(nomePet => {
+        content += `
     <div class='containerLista'>
                 <h2>Tutor: ${nomePet.tutor}</h2>
                 <p>Nome do Pet: ${nomePet.pet}</p>
                 <p>Espécie: ${nomePet.especie}</p>
                 <p>Data de nascimento: ${nomePet.data}</p>
-                <p>Idade do pet: ${nomePet.age}</p>
+                <p>Idade do pet: ${nomePet.aniversario}</p>
                 <img src="${nomePet.imgLink}" alt="${nomePet.tutor}">
             </div>
             `
-});
-document.getElementById('containerLista').innerHTML = content;
+    });
+    document.getElementById('containerLista').innerHTML = content;
 }
 
 
-function showList(){
+function showList() {
     document.getElementById("input-container").classList.remove("hidden")
     document.getElementById("div-vazia").classList.add("hidden")
 }
