@@ -13,7 +13,6 @@ function verificarInputs() {
     console.log(data);
     console.log(imgLink);
 
-}
 
 if (tutor == "" || pet == "" || especie == "" || data == "" || imgLink == "") {
 
@@ -24,6 +23,7 @@ if (tutor == "" || pet == "" || especie == "" || data == "" || imgLink == "") {
     //console.log("Os dados não estão em branco.");
     envieMsg('Os dados foram coletados', 'sucesso');
     return false;
+}
 }
 
 function envieMsg(msg, tipo) {
@@ -59,5 +59,56 @@ function RegistrarPets() {
 
     const nomePet = new NomePet(tutor, pet, especie, data, imgLink);
 
+    listaPets.add(nomePet);
+    console.log(listaPets);
 }
 
+class ListaPets {
+    constructor(){
+        this.listaPets = [];
+    }
+
+    addPet(parametro){
+        if (verificarInputs()) {
+            envieMsg('Preencha todos os campos, por favor!', 'erro');
+        } else if (! isURLValida(parametro.imgLink)) {
+            envieMsg("URL inválida!", "erro");
+        } else {
+            this.listaPets.push(parametro);
+            limparInputs();
+            envieMsg('Cadastrado com sucesso!', 'sucesso');
+            console.log(this.listaPets);
+        }
+    }
+}
+
+const listaPets = new ListaPets();
+
+function limparInputs() {
+    let tutor = document.getElementById("input-nomeTutor").value = "";
+    let pet = document.getElementById("input-nomePet").value = "";
+    let especie = document.getElementById("input-especie").value = "";
+    let data = document.getElementById("input-data").value = "";
+    let imgLink = document.getElementById("input-imgLink").value = "";
+}
+
+function renderizarConteudo() {
+    
+    const listaHTML = document.getElementById('containerLista');
+    listaHTML.innerHTML = '';
+
+    array.forEach(pet => {
+        const petsDiv = `
+        <div class='petDetalhe'>
+            <p>Tutor: ${pet.Tutor}</p>
+            <p>: ${pet.preco}</p>
+            <p>Descrição: ${pet.descricao}</p>
+            <p>Plataforma: ${pet.plataforma}</p>
+            <img src="${pet.imgLink}" alt="${pet.titulo}">
+        </div>
+        `;
+
+        listaHTML.innerHTML += jogosDiv;
+    });
+
+}
